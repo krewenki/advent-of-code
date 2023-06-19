@@ -5,9 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"strings"
-
-	"github.com/krewenki/advent-of-code/cast"
-	"github.com/krewenki/advent-of-code/util"
 )
 
 //go:embed input.txt
@@ -29,29 +26,17 @@ func main() {
 
 	if part == 1 {
 		ans := part1(input)
-		util.CopyToClipboard(fmt.Sprintf("%v", ans))
 		fmt.Println("Output:", ans)
 	} else {
 		ans := part2(input)
-		util.CopyToClipboard(fmt.Sprintf("%v", ans))
 		fmt.Println("Output:", ans)
 	}
 }
 
 func part1(input string) int {
-	parsed := parseInput(input)
-	_ = parsed
-
 	return 0
 }
 
 func part2(input string) int {
 	return 0
-}
-
-func parseInput(input string) (ans []int) {
-	for _, line := range strings.Split(input, "\n") {
-		ans = append(ans, cast.ToInt(line))
-	}
-	return ans
 }
