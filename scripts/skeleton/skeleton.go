@@ -8,8 +8,6 @@ import (
 	"os"
 	"path/filepath"
 	"text/template"
-
-	"github.com/krewenki/advent-of-code/util"
 )
 
 //go:embed tmpls/*.go
@@ -30,8 +28,14 @@ func Run(day, year int) {
 		log.Fatalf("parsing tmpls directory: %s", err)
 	}
 
-	mainFilename := filepath.Join(util.Dirname(), "../../", fmt.Sprintf("%d/day%02d/main.go", year, day))
-	testFilename := filepath.Join(util.Dirname(), "../../", fmt.Sprintf("%d/day%02d/main_test.go", year, day))
+	path, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(path)
+
+	mainFilename := filepath.Join(path, fmt.Sprintf("%d/day%02d/main.go", year, day))
+	testFilename := filepath.Join(path, fmt.Sprintf("%d/day%02d/main_test.go", year, day))
 
 	err = os.MkdirAll(filepath.Dir(mainFilename), os.ModePerm)
 	if err != nil {
