@@ -2,10 +2,10 @@ package aoc
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/krewenki/advent-of-code/util"
 )
 
 func GetInput(day, year int, cookie string) {
@@ -19,8 +19,12 @@ func GetInput(day, year int, cookie string) {
 		panic("'Puzzle inputs differ by user' response")
 	}
 
+	path, err := os.Getwd()
+	if err != nil {
+		log.Println(err)
+	}
 	// write to file
-	filename := filepath.Join(util.Dirname(), "../..", fmt.Sprintf("%d/day%02d/input.txt", year, day))
+	filename := filepath.Join(path, fmt.Sprintf("%d/day%02d/input.txt", year, day))
 	WriteToFile(filename, body)
 
 	fmt.Println("Wrote to file: ", filename)

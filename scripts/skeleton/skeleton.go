@@ -32,7 +32,6 @@ func Run(day, year int) {
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println(path)
 
 	mainFilename := filepath.Join(path, fmt.Sprintf("%d/day%02d/main.go", year, day))
 	testFilename := filepath.Join(path, fmt.Sprintf("%d/day%02d/main_test.go", year, day))
