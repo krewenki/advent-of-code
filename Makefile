@@ -11,6 +11,8 @@ check-aoc-cookie:  ## ensures $AOC_SESSION_COOKIE env var is set
 skeleton: ## make skeleton main(_test).go files, optional: $DAY and $YEAR
 	@ if [[ -n $$DAY && -n $$YEAR ]]; then \
 		go run scripts/cmd/skeleton/main.go -day $(DAY) -year $(YEAR) ; \
+		go run scripts/cmd/input/main.go -day $(DAY) -year $(YEAR) -cookie $(AOC_SESSION_COOKIE); \
+		go run scripts/cmd/prompt/main.go -day $(DAY) -year $(YEAR) -cookie $(AOC_SESSION_COOKIE); \
 	elif [[ -n $$DAY ]]; then \
 		go run scripts/cmd/skeleton/main.go -day $(DAY); \
 	else \
