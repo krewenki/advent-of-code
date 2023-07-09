@@ -36,3 +36,6 @@ prompt: check-aoc-cookie ## get prompt, requires $AOC_SESSION_COOKIE, optional: 
 	else \
 		go run scripts/cmd/prompt/main.go -cookie $(AOC_SESSION_COOKIE); \
 	fi
+
+stats: check-aoc-cookie ## get starcount, requires $AOC_SESSION_COOKIE
+	@ go run scripts/cmd/stats/main.go -cookie $(AOC_SESSION_COOKIE); 

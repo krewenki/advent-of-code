@@ -4,7 +4,6 @@ package aoc
 import (
 	"context"
 	"flag"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -60,7 +59,6 @@ func GetWithAOCCookie(url string, cookie string) []byte {
 	if err != nil {
 		log.Fatalf("reading response body: %s", err)
 	}
-	fmt.Println("response length is", len(body))
 
 	// specific error message from AOC site
 	if strings.HasPrefix(string(body), "Please don't repeatedly") {
