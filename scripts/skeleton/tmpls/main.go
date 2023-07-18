@@ -4,14 +4,18 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
-//go:embed input.txt
 var input string
 
 func init() {
-	// do this in init (not main) so test file has same input
+	fileBytes, err := os.ReadFile("input.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	input = string(fileBytes)
 	input = strings.TrimRight(input, "\n")
 	if len(input) == 0 {
 		panic("empty input.txt file")

@@ -4,8 +4,6 @@ import (
 	"testing"
 )
 
-var example = ``
-
 func Test_part1(t *testing.T) {
 	tests := []struct {
 		name  string

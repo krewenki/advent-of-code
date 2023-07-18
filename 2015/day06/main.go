@@ -4,19 +4,22 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-//go:embed input.txt
 var input string
 
 func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
+	if _, err := os.Stat("input.txt"); err != nil {
+		fileBytes, err := os.ReadFile("input.txt")
+		if err != nil {
+			fmt.Print(err)
+		}
+		input = string(fileBytes)
+		input = strings.TrimRight(input, "\n")
 	}
 }
 
@@ -44,7 +47,7 @@ func atoi(s string) int {
 }
 
 func part1(input string) int {
-	r, _ := regexp.Compile("(turn on|turn off|toggle) (\\d+),(\\d+) through (\\d+),(\\d+)")
+	r, _ := regexp.Compile(`(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)`)
 	grid := [1000][1000]int{}
 	for _, line := range strings.Split(input, "\n") {
 		matches := r.FindStringSubmatch(line)
@@ -91,7 +94,7 @@ func part1(input string) int {
 }
 
 func part2(input string) int {
-	r, _ := regexp.Compile("(turn on|turn off|toggle) (\\d+),(\\d+) through (\\d+),(\\d+)")
+	r, _ := regexp.Compile(`(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)`)
 	grid := [1000][1000]int{}
 	for _, line := range strings.Split(input, "\n") {
 		matches := r.FindStringSubmatch(line)

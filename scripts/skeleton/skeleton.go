@@ -53,8 +53,14 @@ func Run(day, year int) {
 		log.Fatalf("creating main_test.go file: %v", err)
 	}
 
-	ts.ExecuteTemplate(mainFile, "main.go", nil)
-	ts.ExecuteTemplate(testFile, "main_test.go", nil)
+	err = ts.ExecuteTemplate(mainFile, "main.go", nil)
+	if err != nil {
+		log.Fatalf("executing template: %v", err)
+	}
+	err = ts.ExecuteTemplate(testFile, "main_test.go", nil)
+	if err != nil {
+		log.Fatalf("executing template: %v", err)
+	}
 	fmt.Printf("templates made for %d-day%d\n", year, day)
 }
 

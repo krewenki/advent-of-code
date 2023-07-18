@@ -1,0 +1,25 @@
+---
+name: tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+
+
+jobs:
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 1.20
+      - name: find directories
+        run: |
+          find . -type d -name "day*" -exec go test {} \;
+
