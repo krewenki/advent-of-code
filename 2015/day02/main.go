@@ -4,11 +4,22 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 )
 
-//go:embed input.txt
 var input string
+
+func init() {
+	if _, err := os.Stat("input.txt"); err != nil {
+		fileBytes, err := os.ReadFile("input.txt")
+		if err != nil {
+			fmt.Print(err)
+		}
+		input = string(fileBytes)
+		input = strings.TrimRight(input, "\n")
+	}
+}
 
 type Box struct {
 	l, w, h int
@@ -41,14 +52,6 @@ func min(n ...int) int {
 		}
 	}
 	return min
-}
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
 }
 
 func main() {

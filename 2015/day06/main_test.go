@@ -4,7 +4,12 @@ import (
 	"testing"
 )
 
-var example = ``
+var example = `turn on 489,959 through 759,964
+turn off 820,516 through 871,914
+turn on 489,959 through 759,964
+turn off 820,516 through 871,914
+turn on 489,959 through 759,964
+turn off 820,516 through 871,914`
 
 func Test_part1(t *testing.T) {
 	tests := []struct {
@@ -15,7 +20,7 @@ func Test_part1(t *testing.T) {
 		{
 			name:  "example",
 			input: example,
-			want:  0,
+			want:  1626,
 		},
 		// {
 		// 	name:  "actual",
@@ -41,7 +46,7 @@ func Test_part2(t *testing.T) {
 		{
 			name:  "example",
 			input: example,
-			want:  0,
+			want:  4878,
 		},
 		// {
 		// 	name:  "actual",
